@@ -35,7 +35,7 @@ const notifications = [
 function App() {
   const [currentNotification, setCurrentNotification] = useState(0);
   const [showNotification, setShowNotification] = useState(true);
-  const [showSecondPart, setShowSecondPart] = useState(false);
+  const [currentPage, setCurrentPage] = useState('landing'); // 'landing' ou 'offers'
   const [timeLeft, setTimeLeft] = useState({
     minutes: 8,
     seconds: 32
@@ -72,14 +72,14 @@ function App() {
   }, []);
 
   const handleShowOffers = () => {
-    setShowSecondPart(true);
-    // Scroll suave para a segunda parte
-    setTimeout(() => {
-      const secondPart = document.getElementById('second-part');
-      if (secondPart) {
-        secondPart.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
+    setCurrentPage('offers');
+    // Scroll para o topo da nova página
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToLanding = () => {
+    setCurrentPage('landing');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -110,8 +110,8 @@ function App() {
         </div>
       )}
 
-      {/* PRIMEIRA PARTE DO SITE */}
-      <div>
+      {/* PÁGINA DE LANDING */}
+      {currentPage === 'landing' && (
         {/* HEADER - HEADLINE (O SOCO NA CARA) */}
         <header className="bg-gradient-to-br from-orange-600 via-orange-500 to-orange-400 text-white py-8 md:py-12 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-black/10"></div>
@@ -357,11 +357,24 @@ function App() {
             </p>
           </div>
         </footer>
-      </div>
+      )}
 
-      {/* SEGUNDA PARTE DO SITE - OFERTAS E INFORMAÇÕES ADICIONAIS */}
-      {showSecondPart && (
-        <div id="second-part" className="animate-fade-in">
+      {/* PÁGINA DE OFERTAS */}
+      {currentPage === 'offers' && (
+        <div className="animate-fade-in">
+          {/* BOTÃO VOLTAR */}
+          <div className="bg-orange-50 py-4">
+            <div className="max-w-6xl mx-auto px-4">
+              <button 
+                onClick={handleBackToLanding}
+                className="flex items-center gap-2 text-orange-600 hover:text-orange-700 font-semibold transition-colors"
+              >
+                <ChevronUp className="w-4 h-4" />
+                Voltar ao início
+              </button>
+            </div>
+          </div>
+
           {/* OFERTA (A HORA DE PASSAR O CARTÃO) */}
           <section className="py-8 md:py-16 bg-gradient-to-br from-orange-600 to-orange-500 text-white">
             <div className="max-w-6xl mx-auto px-4">
