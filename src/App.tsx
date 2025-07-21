@@ -47,8 +47,8 @@ function App() {
       setTimeout(() => {
         setCurrentNotification((prev) => (prev + 1) % notifications.length);
         setShowNotification(true);
-      }, 500);
-    }, 4000);
+      }, 800);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);
@@ -163,7 +163,7 @@ function App() {
               </div>
             </div>
             <p className="text-sm text-orange-600 mt-4 max-w-md mx-auto">
-              📱 Vídeo otimizado para celular - Assista na vertical
+              
             </p>
             
             {/* BOTÃO PARA MOSTRAR OFERTAS */}
@@ -175,9 +175,6 @@ function App() {
                 🔥 QUERO ACABAR COM A DOR AGORA!
                 <ArrowDown className="w-5 h-5 ml-2 inline-block" />
               </button>
-              <p className="text-sm text-orange-600 mt-2 font-semibold">
-                👆 Clique aqui para ver as ofertas especiais
-              </p>
             </div>
           </div>
         </section>
@@ -358,13 +355,6 @@ function App() {
             <p className="text-base md:text-lg mb-6 md:mb-8 opacity-90">
               Milhares de pessoas já escolheram o Articulazen para recuperar sua qualidade de vida.
             </p>
-            <button 
-              onClick={handleShowOffers}
-              className="bg-white text-orange-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg md:text-xl transition-all transform hover:scale-105 shadow-lg"
-            >
-              🔥 VER OFERTAS ESPECIAIS
-              <ArrowDown className="w-5 h-5 ml-2 inline-block" />
-            </button>
           </div>
         </footer>
       </div>
