@@ -112,6 +112,7 @@ function App() {
 
       {/* PÁGINA DE LANDING */}
       {currentPage === 'landing' && (
+        <>
         {/* HEADER - HEADLINE (O SOCO NA CARA) */}
         <header className="bg-gradient-to-br from-orange-600 via-orange-500 to-orange-400 text-white py-8 md:py-12 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-black/10"></div>
@@ -357,6 +358,7 @@ function App() {
             </p>
           </div>
         </footer>
+        </>
       )}
 
       {/* PÁGINA DE OFERTAS */}
