@@ -216,12 +216,6 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="bg-orange-200 border-l-4 border-orange-600 p-4 md:p-6 rounded">
-              <p className="text-base md:text-lg font-semibold text-orange-800">
-                Ignorar essa dor não vai fazê-la desaparecer. Ela só vai piorar, roubando sua alegria e sua vida, 
-                te transformando num prisioneiro no próprio corpo.
-              </p>
-            </div>
           </div>
         </section>
 
