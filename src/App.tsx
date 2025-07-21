@@ -41,6 +41,41 @@ function App() {
     seconds: 32
   });
 
+  // Despachante de UTM v1.0 - por Lek do Black
+  const handleCheckoutClick = (checkoutUrl: string) => {
+    console.log('LEK DO BLACK: Despachante preparando o pacote...');
+    
+    let finalUrl = checkoutUrl;
+
+    const utmKeys = [
+      'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 
+      'utm_content', 'click_id', 'fbclid', 'gclid', 'src', 'sck'
+    ];
+    
+    const currentUrlParams = new URLSearchParams(window.location.search);
+    const paramsParaAdicionar = new URLSearchParams();
+
+    utmKeys.forEach(key => {
+      let value = currentUrlParams.get(key); // Prioridade 1: URL atual
+      if (!value) {
+        value = localStorage.getItem(`utm_${key}`); // Prioridade 2: Bolso do porteiro
+      }
+      if (value) {
+        paramsParaAdicionar.append(key, value);
+      }
+    });
+
+    const utmString = paramsParaAdicionar.toString();
+
+    if (utmString) {
+      const separator = checkoutUrl.includes('?') ? '&' : '?';
+      finalUrl = `${checkoutUrl}${separator}${utmString}`;
+    }
+
+    console.log('LEK DO BLACK: Pacote pronto. Redirecionando pra:', finalUrl);
+    window.location.href = finalUrl;
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setShowNotification(false);
@@ -395,7 +430,10 @@ function App() {
                     <p className="text-2xl md:text-3xl font-bold text-orange-600 mb-2">R$ 127,00</p>
                     <p className="text-xs md:text-sm text-orange-600">ou 12x de R$ 10,58</p>
                   </div>
-                  <button className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 md:py-4 px-4 md:px-6 rounded-lg text-base md:text-lg transition-colors">
+                  <button 
+                    onClick={() => handleCheckoutClick("https://LINK_CHECKOUT_KIT_1_AQUI")}
+                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 md:py-4 px-4 md:px-6 rounded-lg text-base md:text-lg transition-colors"
+                  >
                     COMPRAR AGORA
                   </button>
                 </div>
@@ -421,7 +459,10 @@ function App() {
                     </div>
                     <p className="text-orange-600 font-bold text-xs md:text-sm mt-2">+ FRETE GRÁTIS</p>
                   </div>
-                  <button className="w-full bg-orange-700 hover:bg-orange-800 text-white font-bold py-3 md:py-4 px-4 md:px-6 rounded-lg text-base md:text-lg transition-colors">
+                  <button 
+                    onClick={() => handleCheckoutClick("https://LINK_CHECKOUT_KIT_3_AQUI")}
+                    className="w-full bg-orange-700 hover:bg-orange-800 text-white font-bold py-3 md:py-4 px-4 md:px-6 rounded-lg text-base md:text-lg transition-colors"
+                  >
                     COMPRAR COM DESCONTO MÁXIMO
                   </button>
                 </div>
@@ -459,7 +500,10 @@ function App() {
                     </div>
                     <p className="text-orange-600 font-bold text-xs md:text-sm mt-2">+ FRETE GRÁTIS</p>
                   </div>
-                  <button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 md:py-4 px-4 md:px-6 rounded-lg text-base md:text-lg transition-colors animate-pulse">
+                  <button 
+                    onClick={() => handleCheckoutClick("https://LINK_CHECKOUT_KIT_5_AQUI")}
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 md:py-4 px-4 md:px-6 rounded-lg text-base md:text-lg transition-colors animate-pulse"
+                  >
                     🔥 GARANTIR DESCONTO ANTES QUE ACABE
                   </button>
                   <p className="text-center text-red-600 font-bold text-xs md:text-sm mt-2">
