@@ -431,7 +431,7 @@ function App() {
                     <p className="text-xs md:text-sm text-orange-600">ou 12x de R$ 10,58</p>
                   </div>
                   <button 
-                    onClick={() => handleCheckoutClick("https://LINK_CHECKOUT_KIT_1_AQUI")}
+                    onClick={() => handleCheckoutClick("https://pay.kirvano.com/40d3f4fe-7396-4aae-95a7-d55fc1a43c1b")}
                     className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 md:py-4 px-4 md:px-6 rounded-lg text-base md:text-lg transition-colors"
                   >
                     COMPRAR AGORA
